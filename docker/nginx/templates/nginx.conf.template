@@ -63,6 +63,20 @@ server {
         proxy_read_timeout 300s;
     }
 
+    # WVP调用ZLM REST API的代理
+    location /index/api/ {
+        proxy_pass http://polaris-media:80;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_connect_timeout 60s;
+        proxy_read_timeout 60s;
+        proxy_send_timeout 60s;
+    }
+
     # 仅允许代理/rtp/开头的路径
     location ^~ /rtp/ {
         # 代理到ZLMediakit服务
