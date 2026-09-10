@@ -1,4 +1,4 @@
-FROM ringcentral/jdk:21.0.9 AS builder
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ringcentral/jdk:21.0.9 AS builder
 
 EXPOSE 18978/tcp
 EXPOSE 8116/tcp
@@ -60,7 +60,7 @@ WORKDIR /build/target
 RUN mv wvp-pro-*.jar wvp.jar
 
 
-FROM ringcentral/jdk:21.0.9
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ringcentral/jdk:21.0.9
 RUN mkdir -p /opt/wvp
 WORKDIR /opt/wvp
 COPY --from=builder /build/target /opt/wvp

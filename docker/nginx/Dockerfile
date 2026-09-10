@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS builder
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:24.04 AS builder
 
 
 RUN apt-get update && \
@@ -17,7 +17,7 @@ RUN ls
 WORKDIR /src/main/resources/static
 RUN ls
 
-FROM nginx:alpine
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nginx:alpine
 
 ARG TZ=Asia/Shanghai
 
